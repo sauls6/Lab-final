@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <script src="./js/main.js"></script>
+    <script src="./js/alumno.js"></script>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon-180x180.png">
+    <title>Lab con Barry - Juego</title>
+</head>
+<body class="dashboard-body bg-shadow">
+    <!-- Page header -->
+    <div class="header">
+        <button style="color: white;" id="menu-btn" class="hamburger" onclick="handleMenu()"><span class="material-icons">menu</span></button>
+    </div>
+    <!-- Main Content wrapper -->
+    <div class="wrapper">
+        <div class="menu">
+            <div style="width: 100%; padding: 10px;">
+                <button style="color: black; display: flex;margin-left: auto;margin-right: 10px;" id="menu-btn" class="close-menu" onclick="handleMenu()"><span class="material-icons">close</span></button>
+            </div>
+            <div class="menu-header">
+                <span style="color: #7D84CC; font-size: 180px;" class="material-icons">account_circle</span>
+                <h2 class="user-name"></h2>
+                <h2 class="user-id"></h2> <!-- Cambio realizado aquí -->
+            </div>
+
+            <div class="progress">
+                <div style="display: flex; justify-content: space-between; padding: 5px;">
+                    <p style="font-size: 18px;">Progreso</p>
+                    <p class="progress-percentage" style="font-size: 18px;">0%</p>
+                </div>
+                <div class="progress-bar-back">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            <div class="menu-options-container">
+                <div id="juego" class="menu-option selected" onclick="handleTabs(event)">
+                    <p class="menu-option-title">Juego</p>
+                </div>
+                <span class="separator"></span>
+                <a href="/reglamento" class="menu-option" onclick="handleTabs(event)">
+                    <p class="menu-option-title">Reglamento</p>
+                  </a>
+                <span class="separator"></span>
+                <div id="certificado" class="menu-option" onclick="handleTabs(event)">
+                    <p class="menu-option-title">Certificado</p>
+                </div>
+                <span class="separator"></span>
+            </div>
+            <div id="certificado" class="menu-footer" onclick="logout()">
+                <p class="menu-option-title">Cerrar Sesión</p>
+                <span class="material-icons">logout</span>
+            </div>
+        </div>
+
+        <!-- Content area -->
+        <div id="juego-tab" class="content-area-container active">
+            <img class="logo-alumno" src="./assets/logos/Logo_final.PNG" alt="logo">
+            <a href="/alumno/juego"><img class="btn-start" src="./assets/buttons/botón blanco.png" alt="start-btn"></a>
+        </div>
+        <div id="certificado-tab" class="content-area-container">
+            <h1 class="tab-title">Certificado</h1>
+            <img class="certificado" class="certificado" src="" alt="certificado">
+            <p style="color: black; font-size: 32px;" class="certificado-message">Loading...</p>
+        </div>
+    </div>
+</body>
+</html>

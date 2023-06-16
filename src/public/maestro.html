@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <script src="./js/main.js"></script>
+    <script src="./js/maestro.js"></script>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon-180x180.png">
+    <title>Lab con Barry - Alumnos</title>
+</head>
+<body class="dashboard-body bg-shadow">
+    <!-- Page header -->
+    <div class="header">
+        <button style="color: white;" id="menu-btn" class="hamburger" onclick="handleMenu()"><span class="material-icons">menu</span></button>
+    </div>
+    <!-- Main Content wrapper -->
+    <div class="wrapper">
+        <div class="menu">
+            <div style="width: 100%; padding: 10px;">
+                <button style="color: black; display: flex;margin-left: auto;margin-right: 10px;" id="menu-btn" class="close-menu" onclick="handleMenu()"><span class="material-icons">close</span></button>
+            </div>
+            <div class="menu-header">
+                <span style="color: #7D84CC; font-size: 180px;" class="material-icons">account_circle</span>
+                <h2 class="user-name"></h2>
+                <h2 class="user-id"></h2> <!-- Cambio realizado aquí -->
+            </div>
+            <div class="menu-options-container">
+                <div id="alumnos" class="menu-option selected" onclick="handleTabs(event)">
+                    <p class="menu-option-title">Alumnos</p>
+                </div>
+                <span class="separator"></span>
+                <div id="dashboard" class="menu-option" onclick="handleTabs(event)">
+                    <p class="menu-option-title">Dashboard</p>
+                </div>
+                <span class="separator"></span>
+                <div id="powerbi" class="menu-option" onclick="handleTabs(event)">
+                    <p class="menu-option-title">PowerBI</p>
+                </div>
+                <span class="separator"></span>
+            </div>
+            <div id="certificado" class="menu-footer" onclick="logout()">
+                <p class="menu-option-title">Cerrar Sesión</p>
+                <span class="material-icons">logout</span>
+            </div>
+        </div>
+
+        <!-- Content area -->
+        <div id="alumnos-tab" class="content-area-container active">
+            <h1 class="tab-title">Estado De Alumnos</h1>
+            <div class="alumnos-container">
+                <ul>
+                    <!-- Display general data for each Student -->
+                </ul>
+            </div>
+        </div>
+        <div class="modal" id="modal">
+            <div style="padding: 20px; width: 100%;">
+                <button style="color: black; display: flex;margin-left: auto;margin-right: 10px;" class="close-modal-btn" onclick="closeModal()"><span class="material-icons">close</span></button>
+            </div>
+            <div class="modal-header">
+                <span style="color: #7D84CC; font-size: 180px;" class="material-icons">account_circle</span>
+                <h2 class="student-name">Nombre del Alumno</h2>
+                <p style="font-size: 20px;" class="student-id">Matrícula</p>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div style="display: flex; justify-content: space-between; padding: 5px;">
+                        <p style="font-size: 18px;">Progreso</p>
+                        <p class="progress-percentage" style="font-size: 18px;">70%</p>
+                    </div>
+                    <div class="progress-bar-back">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="info-alumno">
+                    <div style="width: 50%;"  class="info-col1">
+                        <p  class="info-title">Minijuegos Completados</p>
+                        <div class="minijuegos-list">
+                            <ul>
+                                <!-- Display minigames completed by student -->
+                            </ul>
+                            <span class="loader"></span>
+                        </div>
+                    </div>
+                    <div class="info-col2">
+                        <div style="margin-bottom: 15px;">
+                            <p class="info-title">Estado</p>
+                            <p style="font-weight: bold;" class="student-state">Estado Actual</p>
+                        </div>
+                        <div>
+                            <p class="info-title">Certificado</p>
+                            <div class="certificate-btns" style="display: flex; align-items: center; gap: 5px;">
+                                <a class="certificado-btn" target="_blank">Visualizar</a>
+                                <button onclick="downloadCertificado(event)" class="download-btn"><span style="padding: 0; font-size: medium;" class="material-icons">download</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="overlay" onclick="closeModal()"></div>
+
+        <div id="dashboard-tab" class="content-area-container">
+            <h1 class="tab-title">Dashboard</h1>
+                <div class="main-cards">
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary">ESTUDIANTES REGISTRADOS</p>
+                        </div>
+                        <span class="text-primary" id="registered-students">Loading...</span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary">CURSOS COMPLETADOS</p>
+                        </div>
+                        <span class="text-primary" id="completed-courses">Loading...</span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary">CURSOS EN PROGRESO</p>
+                        </div>
+                        <span class="text-primary" id="courses-in-progress">Loading...</span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary">PROGRESO PROMEDIO</p>
+                        </div>
+                        <span class="text-primary" id="average-progress">Loading...</span>
+                    </div>
+                </div>
+
+            </div>
+            <div id="powerbi-tab" class="content-area-container">
+                <img class="powerbi" src="./assets/dash.jpg" alt="PowerBI">
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
